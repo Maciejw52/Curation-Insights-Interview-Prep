@@ -2,8 +2,10 @@ import { useState, type FormEvent } from "react";
 
 interface IChatInputProps {
   onSend: (value: string) => void;
+  isLoading: boolean;
 }
-export const ChatInput = ({ onSend }: IChatInputProps) => {
+
+export const ChatInput = ({ onSend, isLoading }: IChatInputProps) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -21,6 +23,7 @@ export const ChatInput = ({ onSend }: IChatInputProps) => {
         className="flex-1 p-2 rounded bg-slate-700 text-white outline-none"
         placeholder="Get Curation Insights"
         value={value}
+        disabled={isLoading}
         onChange={(e) => setValue(e.target.value)}
       />
 
