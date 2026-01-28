@@ -1,5 +1,3 @@
 export const Header = () => (
-  <h2 className="text-4xl font-bold flex text-center items-centre justify-centre w-full">
-    Curation Collective
-  </h2>
+  <h2 className="text-2xl font-bold text-center w-full">Curation Collective</h2>
 );

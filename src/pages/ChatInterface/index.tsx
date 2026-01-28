@@ -19,9 +19,13 @@ export const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col max-h-[75vh]">
-      <MessagesContainer messages={messages} />
-      <ChatInput onSend={handleSend} />
+    <div className="flex flex-col h-[calc(100vh-1rem)]">
+      <div className="flex-1 overflow-y-auto flex flex-col-reverse">
+        <MessagesContainer messages={messages} />
+      </div>
+      <div>
+        <ChatInput onSend={handleSend} />
+      </div>
     </div>
   );
 };
