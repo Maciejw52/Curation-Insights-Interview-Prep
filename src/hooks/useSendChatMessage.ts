@@ -1,8 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { mockSendMessage } from "../mocks/mockApi";
+import { api } from "../api/client";
 
 export const useSendMessage = () => {
   return useMutation({
-    mutationFn: (text: string) => mockSendMessage(text),
+    mutationFn: async (text: string) => {
+        const res = await api.post("/chat", { text });
+  return res.data;
+    },
   });
 };

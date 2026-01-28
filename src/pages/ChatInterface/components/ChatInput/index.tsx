@@ -21,7 +21,7 @@ export const ChatInput = ({ onSend, isLoading }: IChatInputProps) => {
     >
       <input
         className="flex-1 p-2 rounded bg-slate-700 text-white outline-none"
-        placeholder="Get Curation Insights"
+        placeholder={isLoading ? "Waiting for reply" : "Get Curation Insights"}
         value={value}
         disabled={isLoading}
         onChange={(e) => setValue(e.target.value)}
@@ -29,6 +29,8 @@ export const ChatInput = ({ onSend, isLoading }: IChatInputProps) => {
 
       <button
         type="submit"
+        disabled={value.length === 0}
+        aria-disabled={value.length === 0}
         className="px-4 py-2 bg-blue-600 rounded text-white font-semibold"
       >
         Send
