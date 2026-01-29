@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { ChatInput } from "./components/ChatInput";
 
-import { EMessageCreatedBy, type TChatMessages } from "./index.types";
+import {
+  EMessageCreatedBy,
+  EMessageType,
+  type TChatMessages,
+} from "./index.types";
 
 import { useSendMessage } from "../../hooks/useSendChatMessage";
 import { MessagesContainer } from "./components/MessagesContainer";
+import { getmessageProperties } from "./utils";
 
 export const ChatInterface = () => {
   const [messages, setMessages] = useState<TChatMessages>([]);
@@ -17,6 +22,7 @@ export const ChatInterface = () => {
     const userMessage = {
       id: Date.now(),
       createdBy: EMessageCreatedBy.USER,
+      type: EMessageType.TEXT,
       text,
     };
     setMessages((prev) => [...prev, userMessage]);
@@ -26,6 +32,8 @@ export const ChatInterface = () => {
         const replyMessage = {
           id: Date.now() + 1,
           createdBy: EMessageCreatedBy.ASSISSTANT,
+          ...getmessageProperties(data),
+
           text: data?.data?.message,
         };
         setMessages((prev) => [...prev, replyMessage]);
